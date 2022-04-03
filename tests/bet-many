@@ -1,0 +1,11 @@
+#! /bin/bash
+
+. ./__environs
+
+#bet
+for (( i=0; i<30 ; ++i))
+do 
+  echo -n .
+  echo 0 > ${BET_SW} && sleep 1 && echo 1 > ${BET_SW}
+done
+

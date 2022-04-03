@@ -1,0 +1,7 @@
+#! /bin/bash
+
+. ./__environs
+
+#bet
+echo 0 > ${BET_SW} && sleep 1 && echo 1 > ${BET_SW}
+

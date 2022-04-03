@@ -1,0 +1,8 @@
+#! /bin/sh
+
+. ./__environs
+
+echo 0 > ${STOP1_SW}
+sleep 1
+echo 1 > ${STOP1_SW}
+

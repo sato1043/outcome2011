@@ -1,0 +1,8 @@
+#! /bin/sh
+
+. ./__environs
+
+echo 0 > ${READY_SW}
+sleep 1
+echo 1 > ${READY_SW}
+

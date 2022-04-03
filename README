@@ -1,0 +1,111 @@
+NOTE:
+
+2010年ごろに受けた職業訓練の際、生徒であった私達に課題として与えられた、
+スロットマシーン制作についてのコードです。
+
+ターゲットはSH4の評価ボード上のLinux 2.6でした。
+開発はUbuntuでやっていましたので、そこでもデバッグできる作りです。
+
+Cですが設計はUMLでやっていたというのが面白い点です。
+後日ハードウェア仕様を変更したときに、
+ドライバ部分の入れ替えでそのまま動いたということも面白かったです。
+C言語でステートパターンを実装しています。
+
+Cのコードはスクラッチから書いています。
+lcdドライバの共通ヘッダだけ提供物でした。
+
+
+esmdファイル構成:
+
+Makefile       ...メイクファイル 
+Makefile.deps  ...依存情報(自動生成)
+
+esmctl         ...メニュー動作起動用ソフトリンク(->emsdへ)
+esmd.ctl       ...esmdコントロール用FIFO
+esmd.lck       ...esmd排他制御用ロックファイル
+esmd.log       ...esmdログファイル
+
+main.c         ...起動関数
+main.h
+control.c      ...メニュー動作時メイン関数 (not implemented)
+control.h
+daemon.c       ...デーモン動作時メイン関数
+daemon.h
+
+gamectx.c      ...ゲーム文脈
+gamectx.h
+settings.c     ...ゲーム設定
+settings.h
+player.c       ...プレイヤー
+player.h
+cointank.c     ...スロット内コイン箱
+cointank.h
+reels.c        ...スロットのリールx３
+reels.h
+
+state.c        ...ゲーム状態・状態マシン基底クラス
+state.h
+
+state_preparing.c ...ゲーム開始待ち
+state_betting.c   ...ベット中
+state_rolling_3.c ...３リール回転中
+state_rolling_2.c ...２リール回転中
+state_rolling_1.c ...１リール回転中
+state_rolling_0.c ...０リール回転中
+state_rolling_r.c ...リーチ回転中
+state_holding.c   ...リーチ後アタリ確定保留中
+state_winning.c   ...アタリ演出中
+
+title_lcd.c    ...LCDタイトル行表示スレッドオブジェクト
+title_lcd.h
+single_sw.c    ...汎用１スイッチ待ちスレッドオブジェクト
+single_sw.h
+fixed_7seg.c   ...汎用７セグメントLED 固定内容表示スレッド
+fixed_7seg.h
+
+ready_lcd.c    ...ゲーム開始待ちメッセージLCD表示スレッドオブジェクト
+ready_lcd.h
+ready_leds.c   ...ゲーム開始待ち中演出付きLED表示スレッドオブジェクト
+ready_leds.h
+ready_sw.c     ...ゲーム開始待ち受け全ボタン待ちスレッドオブジェクト
+ready_sw.h
+
+bet_lcd.c      ...BETTING state中のLCD表示スレッドオブジェクト
+bet_lcd.h
+bet_leds.c     ...BETTING state中のLED表示スレッドオブジェクト
+bet_leds.h
+bet_sw.c       ...BETTING state中のコイン投入ボタン押下待ちスレッドオブジェクト
+bet_sw.h
+start_sw.c     ...BETTING state中の回転開始ボタン押下待ちスレッドオブジェクト
+start_sw.h
+
+roll_7seg.c    ...７セグメントLED 回転内容表示スレッド
+roll_7seg.h
+reach_7seg.c   ...７セグメントLED リーチ中演出付き回転内容表示スレッド
+reach_7seg.h
+slip_7seg.c    ...７セグメントLED リーチ後滑り回転内容表示スレッド
+slip_7seg.h
+
+praise_lcd.c   ...アタリ後演出
+praise_lcd.h
+repay_leds.c   ...アタリ後コイン返却演出LCD表示スレッドオブジェクト
+repay_leds.h
+
+thr_glue.c     ...汎用スタブスレッドオブジェクト
+thr_glue.h
+
+tests          ...テストユニット
+pretest.sh
+
+tpool.c        ...スレッドプール
+tpool.h
+rdwr.c         ...リーダーズ・ライタロック
+rdwr.h
+
+lcddrv.h       ...LCDドライバアクセス定数
+
+util.c         ...ユーティリティ関数群
+util.h
+
+
+excuse me for my broken Englich but it is just my practice.

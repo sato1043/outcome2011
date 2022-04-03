@@ -1,0 +1,5 @@
+#! /bin/sh
+
+. ./__environs
+
+echo quit > ${CTL}

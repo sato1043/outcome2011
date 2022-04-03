@@ -1,0 +1,11 @@
+CTL=../esmd.ctl
+
+READY_SW=/dev/gpio/swc0
+BET_SW=/dev/gpio/swc4
+START_SW=/dev/gpio/swc3
+STOP4_SW=/dev/gpio/swc4
+STOP3_SW=/dev/gpio/swc3
+STOP2_SW=/dev/gpio/swc2
+STOP1_SW=/dev/gpio/swc1
+STOP0_SW=/dev/gpio/swc0
+
